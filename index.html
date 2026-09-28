@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Italiano Barbería | Corte, barba y estilo</title>
+<meta name="description" content="Italiano Barbería. Reserva tu turno por WhatsApp.">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,wght@0,600;0,800;1,600&family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0A0A0F;--panel:rgba(24,20,36,.72);--violet:#A855F7;--pink:#EC4899;--text:#F4F1FA;--muted:#A9A3BC;--line:rgba(255,255,255,.1)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Manrope',sans-serif;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;background:radial-gradient(600px 400px at 85% 10%,rgba(168,85,247,.22),transparent),radial-gradient(500px 400px at 5% 70%,rgba(236,72,153,.16),transparent)}
+h1,h2,h3{font-family:'Bodoni Moda',serif;line-height:1.1}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px}
+
+/* cursor personalizado (solo con mouse) */
+#dot,#ring{position:fixed;top:0;left:0;pointer-events:none;z-index:9999;border-radius:50%;display:none}
+#dot{width:8px;height:8px;background:var(--pink);margin:-4px 0 0 -4px}
+#ring{width:36px;height:36px;border:2px solid var(--violet);margin:-18px 0 0 -18px;transition:width .2s,height .2s,margin .2s,background .2s}
+#ring.big{width:60px;height:60px;margin:-30px 0 0 -30px;background:rgba(168,85,247,.15)}
+@media (hover:hover) and (pointer:fine){*{cursor:none!important}#dot,#ring{display:block}}
+
+/* nav */
+nav{position:fixed;top:0;width:100%;z-index:50;background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:68px}
+.logo{font-family:'Bodoni Moda',serif;font-weight:800;font-size:1.35rem}
+.logo i{font-style:italic;background:linear-gradient(90deg,var(--violet),var(--pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+.links{display:flex;gap:28px;font-size:.92rem;font-weight:600;color:var(--muted)}
+.links a:hover{color:var(--text)}
+.btn{display:inline-block;padding:13px 26px;border-radius:999px;font-weight:800;font-size:.95rem;border:0;color:#fff;background:linear-gradient(90deg,var(--violet),var(--pink));box-shadow:0 10px 30px -8px rgba(236,72,153,.6);transition:transform .2s;font-family:inherit}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn.ghost{background:transparent;border:1px solid var(--line);box-shadow:none}
+
+/* hero */
+.hero{min-height:100vh;display:grid;align-items:center;padding:110px 0 60px}
+.hero .wrap{display:grid;grid-template-columns:1.3fr .7fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:800}
+.hero h1 em{font-weight:600}
+.hero p{color:var(--muted);max-width:46ch;margin:22px 0 32px;font-size:1.08rem}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.pole-wrap{display:flex;justify-content:center;perspective:900px}
+.pole{width:110px;height:380px;border-radius:55px;border:6px solid #e8e4f2;position:relative;overflow:hidden;transform:rotateY(-18deg) rotateX(6deg);box-shadow:0 30px 60px -10px rgba(168,85,247,.55),inset 0 0 25px rgba(0,0,0,.5);background:repeating-linear-gradient(-45deg,var(--violet) 0 26px,#fff 26px 52px,var(--pink) 52px 78px,#fff 78px 104px);background-size:148px 148px;animation:spin 2.4s linear infinite}
+.pole::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.45),rgba(255,255,255,.28) 35%,transparent 60%,rgba(0,0,0,.4))}
+@keyframes spin{to{background-position:0 148px}}
+
+section{padding:90px 0}
+.title{margin-bottom:44px}
+.title h2{font-size:clamp(2rem,4.5vw,3.2rem)}
+.title p{color:var(--muted);margin-top:10px}
+
+/* servicios: tilt 3D */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:22px}
+.card{background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:22px;padding:28px;transition:border-color .3s,box-shadow .3s;will-change:transform;transform-style:preserve-3d}
+.card:hover{border-color:rgba(236,72,153,.6);box-shadow:0 25px 50px -20px rgba(168,85,247,.6)}
+.card svg{width:38px;height:38px;stroke:var(--pink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:16px}
+.card h3{font-size:1.4rem}
+.card p{color:var(--muted);font-size:.93rem;margin:8px 0 18px}
+.card b{font-size:1.5rem;font-weight:800}
+.card button{float:right;background:rgba(168,85,247,.18);border:1px solid var(--violet);color:#fff;border-radius:999px;padding:7px 16px;font-weight:700;font-family:inherit}
+.card button:hover{background:var(--violet)}
+
+/* galeria */
+.gal{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.shot{aspect-ratio:3/4;border-radius:20px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;transition:transform .5s cubic-bezier(.2,.8,.2,1),opacity .3s;transform:perspective(800px) rotateY(0)}
+.shot:nth-child(1){background:linear-gradient(160deg,#5b21b6,#1a1030)}
+.shot:nth-child(2){background:linear-gradient(160deg,#be185d,#1a1030)}
+.shot:nth-child(3){background:linear-gradient(160deg,#7c3aed,#2a0f2e)}
+.shot:nth-child(4){background:linear-gradient(160deg,#db2777,#170f2a)}
+.shot::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-45deg,rgba(255,255,255,.05) 0 2px,transparent 2px 14px)}
+.shot span{position:relative;font-family:'Bodoni Moda',serif;font-style:italic;font-size:1.2rem;font-weight:600}
+.shot:hover{transform:perspective(800px) rotateY(-10deg) scale(1.05);z-index:2}
+.gal:hover .shot:not(:hover){opacity:.55}
+.note{color:var(--muted);font-size:.85rem;margin-top:14px}
+
+/* reserva */
+.reserva{background:var(--panel);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:28px;padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.reserva h2{font-size:clamp(2rem,4vw,2.8rem)}
+.reserva p{color:var(--muted);margin-top:12px}
+form{display:grid;gap:14px}
+label{font-size:.85rem;font-weight:600;color:var(--muted)}
+input,select{width:100%;margin-top:5px;padding:13px 15px;border-radius:12px;border:1px solid var(--line);background:rgba(10,10,15,.7);color:var(--text);font:inherit}
+input:focus,select:focus{outline:2px solid var(--violet)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.wa{background:linear-gradient(90deg,#10b981,#059669);box-shadow:0 10px 30px -8px rgba(16,185,129,.6);width:100%}
+footer{border-top:1px solid var(--line);padding:30px 0;text-align:center;color:var(--muted);font-size:.85rem}
+
+/* aviso */
+#toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,120px);background:#1c1530;border:1px solid var(--violet);padding:12px 22px;border-radius:999px;font-weight:600;transition:transform .35s;z-index:100}
+#toast.on{transform:translate(-50%,0)}
+
+@media(max-width:860px){.links{display:none}.hero .wrap,.reserva{grid-template-columns:1fr}.pole-wrap{order:-1}.pole{height:220px;width:80px}.gal{grid-template-columns:repeat(2,1fr)}.reserva{padding:28px}}
+@media(prefers-reduced-motion:reduce){.pole{animation:none}html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<div id="dot"></div><div id="ring"></div>
+
+<nav><div class="wrap">
+  <a href="#inicio" class="logo">Italiano <i>Barbería</i></a>
+  <div class="links"><a href="#servicios">Servicios</a><a href="#galeria">Estilos</a><a href="#reserva">Reservar</a></div>
+  <a href="#reserva" class="btn">Reservar turno</a>
+</div></nav>
+
+<header class="hero" id="inicio"><div class="wrap">
+  <div>
+    <h1>Corte clásico, <em>actitud</em> de hoy.</h1>
+    <p>Cortes a tijera y máquina, afeitado con toalla caliente y perfilado de barba. Elige tu servicio y reserva tu turno en un minuto por WhatsApp.</p>
+    <div class="cta"><a href="#reserva" class="btn">Reservar por WhatsApp</a><a href="#servicios" class="btn ghost">Ver precios</a></div>
+  </div>
+  <div class="pole-wrap"><div class="pole" role="img" aria-label="Poste de barbería giratorio"></div></div>
+</div></header>
+
+<section id="servicios"><div class="wrap">
+  <div class="title"><h2>Servicios y precios</h2><p>Toca “Elegir” y el servicio se carga en tu reserva.</p></div>
+  <div class="grid">
+    <article class="card"><svg viewBox="0 0 24 24"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg><h3>Corte clásico</h3><p>Tijera o máquina, lavado y peinado final.</p><b>$12.000</b><button data-s="Corte clásico">Elegir</button></article>
+    <article class="card"><svg viewBox="0 0 24 24"><path d="M4 9c0 6 3 11 8 11s8-5 8-11M4 9c2-2 5-3 8-3s6 1 8 3M9 14c1 1 5 1 6 0"/></svg><h3>Barba y perfilado</h3><p>Diseño de barba con navaja y toalla caliente.</p><b>$8.000</b><button data-s="Barba y perfilado">Elegir</button></article>
+    <article class="card"><svg viewBox="0 0 24 24"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><h3>Combo completo</h3><p>Corte + barba + cejas. El más pedido.</p><b>$18.000</b><button data-s="Combo completo">Elegir</button></article>
+    <article class="card"><svg viewBox="0 0 24 24"><path d="M12 3c3 4 6 7 6 11a6 6 0 0 1-12 0c0-4 3-7 6-11z"/></svg><h3>Color y platinado</h3><p>Coloración y matices con productos profesionales.</p><b>$25.000</b><button data-s="Color y platinado">Elegir</button></article>
+  </div>
+</div></section>
+
+<section id="galeria"><div class="wrap">
+  <div class="title"><h2>Estilos de la casa</h2><p>Pasa el mouse sobre cada estilo.</p></div>
+  <div class="gal"><div class="shot"><span>Fade clásico</span></div><div class="shot"><span>Pompadour</span></div><div class="shot"><span>Barba full</span></div><div class="shot"><span>Texturizado</span></div></div>
+  <p class="note">Espacio reservado: aquí puedes reemplazar los bloques por fotos reales de tus trabajos.</p>
+</div></section>
+
+<section id="reserva"><div class="wrap">
+  <div class="reserva">
+    <div><h2>Reserva tu turno</h2><p>Completa los datos y te abrimos WhatsApp con el mensaje listo para enviar. Atendemos de martes a sábado, de 10 a 20 h.</p></div>
+    <form id="f">
+      <label>Nombre<input id="n" required placeholder="Tu nombre"></label>
+      <label>Servicio<select id="s"><option>Corte clásico</option><option>Barba y perfilado</option><option>Combo completo</option><option>Color y platinado</option></select></label>
+      <div class="row"><label>Fecha<input id="d" type="date" required></label><label>Hora<input id="h" type="time" required min="10:00" max="20:00"></label></div>
+      <button class="btn wa" type="submit">Enviar reserva por WhatsApp</button>
+    </form>
+  </div>
+</div></section>
+
+<footer><div class="wrap">© 2026 Italiano Barbería · Página de ejemplo</div></footer>
+<div id="toast" role="status"></div>
+
+<script>
+const PHONE='5491100000000'; // reemplazar por el número real del cliente
+
+// cursor personalizado
+const dot=document.getElementById('dot'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.transform=`translate(${mx}px,${my}px)`});
+(function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(loop)})();
+document.querySelectorAll('a,button,input,select,.shot,.card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>ring.classList.add('big'));
+  el.addEventListener('mouseleave',()=>ring.classList.remove('big'));
+});
+
+// tilt 3D en tarjetas
+document.querySelectorAll('.card').forEach(c=>{
+  c.addEventListener('mousemove',e=>{
+    const r=c.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    c.style.transform=`perspective(900px) rotateX(${-y*14}deg) rotateY(${x*14}deg) translateZ(6px)`;
+  });
+  c.addEventListener('mouseleave',()=>{c.style.transform=''});
+});
+
+// elegir servicio
+const toast=document.getElementById('toast');
+function say(t){toast.textContent=t;toast.classList.add('on');setTimeout(()=>toast.classList.remove('on'),2200)}
+document.querySelectorAll('.card button').forEach(b=>b.addEventListener('click',()=>{
+  document.getElementById('s').value=b.dataset.s;
+  say(b.dataset.s+' agregado a tu reserva');
+  document.getElementById('reserva').scrollIntoView({behavior:'smooth'});
+}));
+
+// reserva por WhatsApp
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const v=id=>document.getElementById(id).value;
+  const msg=`Hola Italiano Barbería! Quiero reservar un turno.\n\nNombre: ${v('n')}\nServicio: ${v('s')}\nFecha: ${v('d')}\nHora: ${v('h')}\n\n¿Tienen disponibilidad?`;
+  window.open(`https://wa.me/${PHONE}?text=${encodeURIComponent(msg)}`,'_blank');
+});
+</script>
+</body>
+</html>
